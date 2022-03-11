@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/elliots'
+let g:netrw_dirhist_4='/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)'
+let g:netrw_dirhist_3='/home/elliots/Documents/Elliot Swaim/Education'
+let g:netrw_dirhist_2='/home/elliots/Documents/Elliot Swaim'
+let g:netrw_dirhist_1='/home/elliots/Documents'
+let g:netrw_dirhist_0='/home/elliots'
+let g:netrw_dirhist_9='/home/elliots/.emacs.d'
+let g:netrw_dirhist_8='/home/elliots'
+let g:netrw_dirhist_7='/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)/Second Semester/CSC-161'
+let g:netrw_dirhist_6='/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)/Second Semester'
