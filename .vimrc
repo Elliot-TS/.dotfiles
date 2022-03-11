@@ -65,8 +65,6 @@ Plug 'https://github.com/ycm-core/YouCompleteMe'
 Plug 'mbbill/undotree'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'sainnhe/everforest'
 Plug 'joshdick/onedark.vim'
 Plug 'vim-scripts/CSApprox'
@@ -84,13 +82,6 @@ let g:tex_conceal='abdmg'
 " Autocompile latex on save
 autocm BufWritePost *.tex silent !pdflatex --interaction=batchmode "%" 2>&1 > /dev/null
 nnoremap <Leader>t :silent !xdg-open "%:t:r".pdf & disown<CR>:redraw!<CR>
-
-" Snippets
-let g:UltiSnipsSnippetDirectries = ['$HOME/.vim/UltiSnips', 'UltiSnips']
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsExpandTrigger = '<C-s>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
 colorscheme hybrid 
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
