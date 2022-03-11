@@ -83,7 +83,7 @@ let g:tex_conceal='abdmg'
 autocm BufWritePost *.tex silent !pdflatex --interaction=batchmode "%" 2>&1 > /dev/null
 nnoremap <Leader>t :silent !xdg-open "%:t:r".pdf & disown<CR>:redraw!<CR>
 
-colorscheme hybrid 
+colorscheme everforest 
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 set t_Co=256
