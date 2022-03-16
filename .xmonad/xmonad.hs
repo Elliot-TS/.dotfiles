@@ -13,8 +13,6 @@ import XMonad.Actions.Minimize
 import XMonad.Hooks.EwmhDesktops -- Makes Xmonad EWMH compliant rather than only ICCCM... whatever that means
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.InsertPosition
-import XMonad.Hooks.StatusBar
-import XMonad.Hooks.StatusBar.PP
 import XMonad.Hooks.ManageHelpers
 
 -- TODO: Experiment with XMonad.Layout.Groups
@@ -117,7 +115,7 @@ myManageHook = composeAll
 myConfig = def
     {
           modMask       = mod4Mask      -- Rebind Mod to the Super Key
-        , terminal      = "termite"     -- Set Default Terminal
+        , terminal      = "xfce4-terminal"       -- Set Default Terminal
         , layoutHook    = myLayout      -- Use the custom Layouts
         , startupHook   = myStartupHook -- Use the custom startup hook
         , manageHook    = myManageHook  -- Match on certain windows
@@ -139,7 +137,7 @@ myConfig = def
         , ("M-f"    ,               spawn "firefox"                     )
         , ("M-d"    ,               spawn "dolphin /home/elliots/Documents/Elliot\\ Swaim/")
         , ("M-v"    ,               spawn "virtualbox &"                )
-        , ("M-x"    ,               spawn "konsole -e 'vim $HOME/.xmonad/xmonad.hs'")
+        , ("M-x"    ,               spawn "vim ~/.xmonad/xmonad.hs")
         , ("M-a"    ,               spawn "net.ankiweb.Anki"            )
         , ("M-o"    ,               spawn "onboard"                     )
         
@@ -199,49 +197,6 @@ myConfig = def
         restoreAll = mapM_ maximizeWindow
         restoreAllMinimized = minimizedWindows >>= restoreAll
         minimizedWindows = withMinimized return
-----------------------------------------------------------------------------------------
--- Xmobar Config
---  Options for the PP record: https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Hooks-DynamicLog.html#t:PP
---
---  ppOrder is where the order of things is defined.
---      ws is for work space
---      l is for layout
---      wins is a list of the titles of the windows
---      _ means that we don't care about the title of the focused window since
---          it's already part of wins
---  
---  formatFocused and formatUnfocused determine the format that the focused and
---      unfocused windows are displayed in
---
---  The \ args -> body is haskell syntax for lambda abstraction.
-----------------------------------------------------------------------------------------
-myXmobarPP :: PP
-myXmobarPP = def
-    { ppSep             = magenta " • "
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap " " "" . xmobarBorder "Top" "#8be9fd" 2
-    , ppHidden          = white . wrap " " ""
-    , ppHiddenNoWindows = lowWhite . wrap " " ""
-    , ppUrgent          = red . wrap (yellow "!") (yellow "!")
-    , ppOrder           = \[ws, l, _, wins] -> [ws, l, wins]
-    , ppExtras          = [logTitles formatFocused formatUnfocused]
-    }
-  where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
-
-    -- | Windows should have *some* title, which should not not exceed a
-    -- sane length.
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
-
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
-    white    = xmobarColor "#f8f8f2" ""
-    yellow   = xmobarColor "#f1fa8c" ""
-    red      = xmobarColor "#ff5555" ""
-    lowWhite = xmobarColor "#bbbbbb" ""
 
 ----------------------------------------------------------------------------------------
 -- Main
@@ -262,9 +217,7 @@ myXmobarPP = def
 ----------------------------------------------------------------------------------------
 main :: IO()
 main =    xmonad 
-        . ewmhFullscreen 
         . ewmh 
-        . withEasySB (statusBarProp "xmobar ~/.config/xmobar/xmobarrc" (pure myXmobarPP)) toggleStructsKey
         $ myConfig
     where
         toggleStructsKey :: XConfig Layout -> (KeyMask, KeySym)

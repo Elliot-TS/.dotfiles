@@ -1,1 +1,6 @@
-$ ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -dynamic -v0 -outputdir /home/elliots/.xmonad/build-x86_64-linux -o /home/elliots/.xmonad/xmonad-x86_64-linux
+ghc: panic! (the 'impossible' happened)
+  (GHC version 8.4.4 for x86_64-unknown-linux):
+	Prelude.chr: bad argument: 12560330
+
+Please report this as a GHC bug:  http://www.haskell.org/ghc/reportabug
+

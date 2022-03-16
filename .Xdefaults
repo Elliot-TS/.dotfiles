@@ -1,0 +1,4 @@
+XTerm*background: #2C3E50
+XTerm*foreground: #BDC3C7
+XTerm*font: -*-fixed-medium-r-*-*-18-*-*-*-*-*-iso8859-*
+XTerm*saveLines: 10000

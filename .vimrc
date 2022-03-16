@@ -27,7 +27,7 @@ autocmd Filetype python set cursorcolumn
 
 set scrolloff=10
 
-"set mouse=a
+set mouse=a
 
 " Remap Keys
 noremap <C-c> "+y
