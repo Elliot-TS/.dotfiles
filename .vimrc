@@ -72,6 +72,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'fuadnafiz98/transparent.vim'
 Plug 'romgrk/doom-one.vim'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'beyondmarc/glsl.vim'
 
 call plug#end()
 " VimTex
@@ -83,7 +85,7 @@ let g:tex_conceal='abdmg'
 
 " Autocompile latex on save
 autocm BufWritePost *.tex silent !pdflatex --interaction=batchmode "%" 2>&1 > /dev/null
-nnoremap <Leader>t :silent !xdg-open "%:t:r".pdf & disown<CR>:redraw!<CR>
+nnoremap <Leader>t :silent !zathura "%:t:r".pdf & disown<CR>:redraw!<CR>
 
 " Snippets
 let g:UltiSnipsSnippetDirectries = ['$HOME/.vim/UltiSnips', 'UltiSnips']
@@ -92,7 +94,15 @@ let g:UltiSnipsExpandTrigger = '<C-s>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 
-colorscheme hybrid 
+" Template Files
+if has("autocmd")
+    augroup templates
+        autocmd BufNewFile *.tex 0r $HOME/.vim/templates/skeleton.tex
+    augroup END
+endif
+
+" Theming
+colorscheme onehalfdark 
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 set t_Co=256

@@ -1,0 +1,40 @@
+Config { overrideRedirect = False
+        , font     = "xft:iosevka-10"
+        , additionalFonts = [     
+                                  "xft:Mononoki Nerd Font:pixelsize=18:antialias=true:hinting=true"
+                                , "xft:FontAwesome-13"
+                            ] 
+        , bgColor  = "#282c34"
+        , fgColor  = "#dcdfe4"
+        , position = TopW L 100
+        , commands = [ Run Weather "KGGI"
+                        [ "--template", "<fn=1>\xfa8f </fn><weather> <tempC>°C"
+                        , "-L", "0"
+                        , "-H", "25"
+                        ] 1200
+                    , Run Cpu
+                        [ "-L", "10"
+                        , "-H", "50"
+                        , "--high"  , "red"
+                        , "--low", "green"
+                        ] 10
+                    , Run Alsa "default" "Master"
+                        [ "--template", "<volumestatus>"
+                        , "--suffix"  , "True"
+                        , "--"
+                        , "--on", "<fn=1>\xf028 </fn> "
+                        , "--onc", "#64eaa1"
+                        , "--off", "<fn=1>\xfa80 </fn> "
+                        , "--offc", "#18c37"
+                        ]
+                    , Run Com "/home/elliots/.dotfiles/xmobar/utils/battery.sh" [] "battery" 600
+                    , Run Memory ["--template", "Mem: <usedratio>%"] 10
+                    , Run Date "<fn=1>\xf073 </fn> %a %m/%d/%y"  "date" 10
+                    , Run Date "<fn=1>\xf64f </fn>%H:%M:%S" "time" 10
+                    , Run XMonadLog
+                    ]
+        , sepChar  = "%"
+        , alignSep = "}{"
+        , template = "%XMonadLog% }{ <fc=#64eaa1>%alsa:default:Master%</fc> | <fc=#e06c75>%cpu% %memory%</fc> | <fc=#61afef>%battery%</fc> | <fc=#e5c07b>%date%</fc> | <fc=#c678dd>%time%</fc> | <fc=#56b6c2>%KGGI%</fc> "
+        }
+

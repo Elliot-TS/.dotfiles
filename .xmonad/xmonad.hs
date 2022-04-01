@@ -86,6 +86,7 @@ myStartupHook = do
     spawnOnce "setxkbmap -layout us,gr -variant ,polytonic -option grp:shifts_toggle"
     spawnOnce "bluethoothctl power on"
     spawnOnce "accountable2you"
+    spawnOnce "picom -b"
 
 ------------------------------------------------------------------------------------------
 -- Manage Hooks
