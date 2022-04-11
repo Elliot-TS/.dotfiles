@@ -1,0 +1,6 @@
+To unblock Bluetooth
+> rfkill list
+Find the number of the bluetooth service
+> rfkill unblock #
+(replace # with that number)
+> bluetoothctl power on

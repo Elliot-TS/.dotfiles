@@ -2,6 +2,10 @@
 -- Following the following tutorial:
 --     https://xmonad.org/TUTORIAL.html
 -----------------------------------------------
+-- Note: If you break XMonad, you can't install it
+-- with pacman because pacman only has an old version
+-- Use stack to install it by following the official
+-- XMonad installation guide
 
 ---------------------
 -- Import Modules
@@ -79,7 +83,7 @@ keyboardLayoutKeyBinding = "shifts_toggle" -- see https://gist.github.com/jatcwa
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "xscreensaver -no-splash &"
-    spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x5f5f5f --height 18 &"
+    -- spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x5f5f5f --height 18 &"
     spawnOnce "xsetroot -cursor_name left_ptr &"
     spawnOnce "/usr/lib/kdeconnectd &"
     --spawnOnce $ "setxkbmap -layout " ++ keyboardLayouts ++ " -variant " ++ keyboardVariants ++ " -option grp:" ++ keyboardLayoutKeyBinding
@@ -140,7 +144,7 @@ myConfig = def
         , ("M-f"    ,               spawn "firefox"                     )
         , ("M-d"    ,               spawn "dolphin /home/elliots/Documents/Elliot\\ Swaim/")
         , ("M-v"    ,               spawn "virtualbox &"                )
-        , ("M-x"    ,               spawn "konsole -e 'vim $HOME/.xmonad/xmonad.hs'")
+        , ("M-x"    ,               spawn "konsole -e 'vim $HOME/.dotfiles/.xmonad/xmonad.hs'")
         , ("M-a"    ,               spawn "net.ankiweb.Anki"            )
         , ("M-o"    ,               spawn "onboard"                     )
         
@@ -171,8 +175,8 @@ myConfig = def
         , ("<XF86AudioLowerVolume>",    spawn "amixer set Master unmute; amixer set Master 5%-")
         , ("<XF86AudioMute>",           spawn "amixer set Master toggle")
         
-        , ("<XF86MonBrightnessUp>",     spawn "$HOME/.xmonad/utils/bright -a")
-        , ("<XF86MonBrightnessDown>",   spawn "$HOME/.xmonad/utils/bright -s")
+        , ("<XF86MonBrightnessUp>",     spawn "$HOME/.dotfiles/.xmonad/utils/bright -a")
+        , ("<XF86MonBrightnessDown>",   spawn "$HOME/.dotfiles/.xmonad/utils/bright -s")
     ] 
     where
         mykeys (XConfig {modMask = modm}) = M.fromList $
@@ -265,7 +269,7 @@ main :: IO()
 main =    xmonad 
         . ewmhFullscreen 
         . ewmh 
-        . withEasySB (statusBarProp "xmobar ~/.config/xmobar/xmobarrc" (pure myXmobarPP)) toggleStructsKey
+        . withEasySB (statusBarProp "xmobar ~/.dotfiles/xmobar/xmobarrc" (pure myXmobarPP)) toggleStructsKey
         $ myConfig
     where
         toggleStructsKey :: XConfig Layout -> (KeyMask, KeySym)
