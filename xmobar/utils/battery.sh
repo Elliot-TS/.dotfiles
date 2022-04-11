@@ -27,7 +27,7 @@ fi
 battery_icon_str="<fn=1>"
 if [[ $state == "fully-charged" ]]
 then
-    echo "fully charged: \uf584"
+    battery_icon_str+="\uf584"
 elif [[ $state == "charging" ]]
 then
     if [[ ${percentage%?} -lt 30 ]]

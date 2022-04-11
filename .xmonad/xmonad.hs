@@ -177,6 +177,9 @@ myConfig = def
         
         , ("<XF86MonBrightnessUp>",     spawn "$HOME/.dotfiles/.xmonad/utils/bright -a")
         , ("<XF86MonBrightnessDown>",   spawn "$HOME/.dotfiles/.xmonad/utils/bright -s")
+
+        -- Airplane Mode
+        , ("M-S-a",         spawn "$HOME/.dotfiles/xmobar/utils/airplane/toggle_airplane_mode.sh")
     ] 
     where
         mykeys (XConfig {modMask = modm}) = M.fromList $

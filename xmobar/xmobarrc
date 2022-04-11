@@ -1,7 +1,7 @@
 Config { overrideRedirect = False
-        , font     = "xft:iosevka-10"
+        , font     = "xft:iosevka-11"
         , additionalFonts = [     
-                                  "xft:Mononoki Nerd Font:pixelsize=18:antialias=true:hinting=true"
+                                  "xft:Mononoki Nerd Font:pixelsize=20:antialias=true:hinting=true"
                                 , "xft:FontAwesome-13"
                             ] 
         , bgColor  = "#282c34"
@@ -28,6 +28,7 @@ Config { overrideRedirect = False
                         , "--offc", "#18c37"
                         ]
                     , Run Com "/home/elliots/.dotfiles/xmobar/utils/battery.sh" [] "battery" 600
+                    , Run Com "/home/elliots/.dotfiles/xmobar/utils/airplane/xmobar_airplane_mode.sh" [] "airplane" 30
                     , Run Memory ["--template", "Mem: <usedratio>%"] 10
                     , Run Date "<fn=1>\xf073 </fn> %a %m/%d/%y"  "date" 10
                     , Run Date "<fn=1>\xf64f </fn>%H:%M:%S" "time" 10
@@ -35,6 +36,6 @@ Config { overrideRedirect = False
                     ]
         , sepChar  = "%"
         , alignSep = "}{"
-        , template = "%XMonadLog% }{ <fc=#64eaa1>%alsa:default:Master%</fc> | <fc=#e06c75>%cpu% %memory%</fc> | <fc=#61afef>%battery%</fc> | <fc=#e5c07b>%date%</fc> | <fc=#c678dd>%time%</fc> | <fc=#56b6c2>%KGGI%</fc> "
+        , template = "%XMonadLog% }{ <fc=#64eaa1>%alsa:default:Master%</fc> | <fc=#e06c75>%cpu% %memory%</fc> | <fc=#61afef>%battery%</fc> | <fc=#e5c07b>%date%</fc> | <fc=#c678dd>%time%</fc> | <fc=#56b6c2>%KGGI%</fc> <fc=#ffffff>%airplane%</fc>"
         }
 
