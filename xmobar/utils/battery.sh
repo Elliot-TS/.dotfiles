@@ -32,24 +32,24 @@ elif [[ $state == "charging" ]]
 then
     if [[ ${percentage%?} -lt 30 ]]
     then
-        battery_icon_str+="\uf585"
+        battery_icon_str+="\uf585 "
     elif [[ ${percentage%?} -lt 40 ]]
     then
-        battery_icon_str+="\uf586"
+        battery_icon_str+="\uf586 "
     elif [[ ${percentage%?} -lt 50 ]]
     then
-        battery_icon_str+="\uf587"
+        battery_icon_str+="\uf587 "
     elif [[ ${percentage%?} -lt 70 ]]
     then
-        battery_icon_str+="\uf588"
+        battery_icon_str+="\uf588 "
     elif [[ ${percentage%?} -lt 90 ]]
     then
-        battery_icon_str+="\uf589"
+        battery_icon_str+="\uf589 "
     elif [[ ${percentage%?} -lt 100 ]]
     then
-        battery_icon_str+="\uf58a"
+        battery_icon_str+="\uf58a "
     else
-        battery_icon_str+="\uf584"
+        battery_icon_str+="\uf584 "
     fi
 elif [[ $state == "discharging" ]]
 then

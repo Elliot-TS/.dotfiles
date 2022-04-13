@@ -82,12 +82,13 @@ keyboardLayoutKeyBinding = "shifts_toggle" -- see https://gist.github.com/jatcwa
 
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
-    spawnOnce "xscreensaver -no-splash &"
+    -- spawnOnce "xscreensaver -no-splash &"
     -- spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x5f5f5f --height 18 &"
     spawnOnce "xsetroot -cursor_name left_ptr &"
     spawnOnce "/usr/lib/kdeconnectd &"
     --spawnOnce $ "setxkbmap -layout " ++ keyboardLayouts ++ " -variant " ++ keyboardVariants ++ " -option grp:" ++ keyboardLayoutKeyBinding
     spawnOnce "setxkbmap -layout us,gr -variant ,polytonic -option grp:shifts_toggle"
+    spawn "/home/elliots/.dotfiles/.xmonad/utils/remap_keys.sh"
     spawnOnce "bluethoothctl power on"
     spawnOnce "accountable2you"
     spawnOnce "picom -b"
