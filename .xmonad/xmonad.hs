@@ -236,17 +236,18 @@ myXmobarPP = def
     , ppExtras          = [logTitles formatFocused formatUnfocused]
     }
   where
-    formatFocused   = wrap (white    "[") (white    "]") . magenta . ppWindow
-    formatUnfocused = wrap (lowWhite "[") (lowWhite "]") . blue    . ppWindow
+    formatFocused = wrap " " " " . green . xmobarBorder "Bottom" "#64eaa1" 2 . ppWindow
+    formatUnfocused = wrap " " " " . magenta . xmobarBorder "Bottom" "#c678dd" 2 . ppWindow
 
     -- | Windows should have *some* title, which should not not exceed a
     -- sane length.
     ppWindow :: String -> String
     ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
 
-    blue, lowWhite, magenta, red, white, yellow :: String -> String
-    magenta  = xmobarColor "#ff79c6" ""
-    blue     = xmobarColor "#bd93f9" ""
+    blue, green, lowWhite, magenta, red, white, yellow :: String -> String
+    magenta  = xmobarColor "#c678dd" ""
+    blue     = xmobarColor "#61afef" ""
+    green    = xmobarColor "#64eaa1" ""
     white    = xmobarColor "#f8f8f2" ""
     yellow   = xmobarColor "#f1fa8c" ""
     red      = xmobarColor "#ff5555" ""
