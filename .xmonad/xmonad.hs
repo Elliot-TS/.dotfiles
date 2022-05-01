@@ -33,6 +33,8 @@ import XMonad.Layout.ThreeColumns
 
 import XMonad.ManageHook
 
+import XMonad.StackSet as W -- to make dialogs show above other floating windows
+
 import XMonad.Util.EZConfig
 import XMonad.Util.Loggers
 import XMonad.Util.SpawnOnce
@@ -102,7 +104,7 @@ myManageHook = composeAll
     [     className =? "Gimp"       --> doFloat
         , className =? "krita"      --> doFloat
         , className =? "ksysguard"  --> doFloat
-        , isDialog                  --> doFloat
+        , isDialog                  --> doF W.swapUp
         , insertPosition Below Newer
     ]
 

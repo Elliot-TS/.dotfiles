@@ -15,6 +15,7 @@ set incsearch
 set nocompatible
 "set cursorline
 set relativenumber
+set foldmethod=syntax
 
 " Smart Search
 set ignorecase
@@ -30,32 +31,35 @@ set scrolloff=10
 "set mouse=a
 
 " Remap Keys
+let mapleader=" "
 noremap <C-c> "+y
-nnoremap <Leader>y "+y
+nnoremap <leader>y "+y
 noremap <C-v> "+p
-nnoremap <Leader>p "+p
+nnoremap <leader>p "+p
 inoremap jj <esc>
-nnoremap <Leader>h :wincmd h<CR>
-nnoremap <Leader>j :wincmd j<CR>
-nnoremap <Leader>k :wincmd k<CR>
-nnoremap <Leader>l :wincmd l<CR>
-nnoremap <Leader>u :UndotreeShow<CR>
-nnoremap <Leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
+nnoremap <silent> <leader>+ :vertical resize +5<CR>
+nnoremap <silent> <leader>- :vertical resize -5<CR>
 
-nnoremap <silent> <Leader>gd :YcmCompleter GoTo<CR>
-nnoremap <silent> <Leader>gf :YcmCompleter FixIt<CR>
+nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 
 " Vim Opacity
-nnoremap <Leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
+nnoremap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
 
+" Spelling
 set spelllang=en_us
 inoremap <c-l> <c-g>u<esc>[s1z=`]a<c-g>u
-nnoremap <Leader>s :setlocal spell!<CR>
+nnoremap <leader>s :setlocal spell!<CR>
 
-" Lets
-let mapleader=" "
+" Custom Commands
+nnoremap <leader>g :!/home/elliots/.dotfiles/.vim/utils/latex/Gauss_Elim<CR>
+
 
 " Plugins
 call plug#begin('$HOME/.vim/plugged')
@@ -67,7 +71,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'sainnhe/everforest'
+Plug 'sainnhe/everforest' 
 Plug 'joshdick/onedark.vim'
 Plug 'vim-scripts/CSApprox'
 Plug 'fuadnafiz98/transparent.vim'
@@ -75,6 +79,7 @@ Plug 'romgrk/doom-one.vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'beyondmarc/glsl.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 " VimTex
@@ -86,7 +91,7 @@ let g:tex_conceal='abdmg'
 
 " Autocompile latex on save
 autocm BufWritePost *.tex silent !pdflatex --interaction=batchmode "%" 2>&1 > /dev/null
-nnoremap <Leader>t :silent !zathura "%:t:r".pdf & disown<CR>:redraw!<CR>
+nnoremap <leader>t :silent !zathura "%:t:r".pdf & disown<CR>:redraw!<CR>
 
 " Snippets
 let g:UltiSnipsSnippetDirectries = ['$HOME/.vim/UltiSnips', 'UltiSnips']
@@ -99,6 +104,8 @@ let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 if has("autocmd")
     augroup templates
         autocmd BufNewFile *.tex 0r $HOME/.vim/templates/skeleton.tex
+        autocmd BufNewFile *.c 0r $HOME/.vim/templates/skeleton.c
+        autocmd BufNewFile *.sh 0r $HOME/.vim/templates/skeleton.sh
     augroup END
 endif
 
@@ -263,18 +270,18 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+"nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+"nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+"nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+"nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+"nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+"nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
