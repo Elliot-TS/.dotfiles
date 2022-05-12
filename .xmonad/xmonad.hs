@@ -74,13 +74,7 @@ myLayout =    Rn.renamed [Rn.CutWordsLeft 1]
 
 -----------------------------------------------------------------------------------------
 -- Startup Hooks
---
--- TODO: Make setxkbmap dynamic
 -----------------------------------------------------------------------------------------
-
-keyboardLayouts = "us,gr"
-keyboardVariants = ",polytonic"
-keyboardLayoutKeyBinding = "shifts_toggle" -- see https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee for all options
 
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
@@ -88,9 +82,7 @@ myStartupHook = do
     -- spawnOnce "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x5f5f5f --height 18 &"
     spawnOnce "xsetroot -cursor_name left_ptr &"
     spawnOnce "/usr/lib/kdeconnectd &"
-    --spawnOnce $ "setxkbmap -layout " ++ keyboardLayouts ++ " -variant " ++ keyboardVariants ++ " -option grp:" ++ keyboardLayoutKeyBinding
-    spawnOnce "setxkbmap -layout us,gr -variant ,polytonic -option grp:shifts_toggle"
-    spawn "/home/elliots/.dotfiles/.xmonad/utils/remap_keys.sh"
+    --spawn "/home/elliots/.dotfiles/.xmonad/utils/remap_keys.sh"
     spawnOnce "bluethoothctl power on"
     spawnOnce "accountable2you"
     spawnOnce "picom -b"
@@ -101,9 +93,8 @@ myStartupHook = do
 ------------------------------------------------------------------------------------------
 
 myManageHook = composeAll
-    [     className =? "Gimp"       --> doFloat
-        , className =? "krita"      --> doFloat
-        , className =? "ksysguard"  --> doFloat
+    [
+          className =? "ksysguard"  --> doFloat
         , isDialog                  --> doF W.swapUp
         , insertPosition Below Newer
     ]
@@ -147,7 +138,7 @@ myConfig = def
         , ("M-f"    ,               spawn "firefox"                     )
         , ("M-d"    ,               spawn "dolphin /home/elliots/Documents/Elliot\\ Swaim/")
         , ("M-v"    ,               spawn "virtualbox &"                )
-        , ("M-x"    ,               spawn "konsole -e 'vim $HOME/.dotfiles/.xmonad/xmonad.hs'")
+        , ("M-x"    ,               spawn "termite -e 'vim /home/elliots/.dotfiles/.xmonad/xmonad.hs'")
         , ("M-a"    ,               spawn "net.ankiweb.Anki"            )
         , ("M-o"    ,               spawn "onboard"                     )
         
@@ -190,7 +181,7 @@ myConfig = def
                 -----------------------------------------------------------------
                 -- Programs
                 -----------------------------------------------------------------
-                 ((mod1Mask, xK_space), spawn "krunner --replace")
+                 ((modm, xK_space), spawn "krunner --replace")
                 
                 ----------------------------------------------------------------
                 -- Scripts

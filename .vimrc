@@ -1,6 +1,8 @@
+" Vim Cheet Sheet https://vim.rtorr.com/
 " Syntax highlighting
 syntax on
 
+set linebreak
 set noerrorbells
 set tabstop=4 softtabstop=4
 set expandtab
@@ -29,12 +31,9 @@ autocmd Filetype python set cursorcolumn
 set scrolloff=10
 
 "set mouse=a
-
 " Remap Keys
 let mapleader=" "
-noremap <C-c> "+y
 nnoremap <leader>y "+y
-noremap <C-v> "+p
 nnoremap <leader>p "+p
 inoremap jj <esc>
 nnoremap <leader>h :wincmd h<CR>
@@ -46,8 +45,8 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 
-nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
+"nnoremap <silent> <leader>gd :YcmCompleter GoTo<CR>
+"nnoremap <silent> <leader>gf :YcmCompleter FixIt<CR>
 
 " Vim Opacity
 nnoremap <leader>o :hi Normal guibg=NONE ctermbg=NONE<CR>
@@ -59,13 +58,20 @@ nnoremap <leader>s :setlocal spell!<CR>
 
 " Custom Commands
 nnoremap <leader>g :!/home/elliots/.dotfiles/.vim/utils/latex/Gauss_Elim<CR>
+:command W w
+:command WQ wq
+:command Wq wq
+
+" Latex Colors
+nnoremap <leader>co bvec\c{}<esc>Pl%i
+vnoremap <leader>co c\c{}<esc>Pl%i
 
 
 " Plugins
 call plug#begin('$HOME/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
-Plug 'https://github.com/ycm-core/YouCompleteMe'
+"Plug 'https://github.com/ycm-core/YouCompleteMe'
 Plug 'mbbill/undotree'
 Plug 'flazz/vim-colorschemes'
 Plug 'lervag/vimtex'
@@ -116,7 +122,7 @@ set background=dark
 set t_Co=256
 
 " YouCompleteMe
-let g:ycm_filetype_whitelist = {"tex":1}
+"let g:ycm_filetype_whitelist = {"tex":1}
 
 " Coc
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
@@ -170,10 +176,12 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" Make <TAB> auto-select the first completion item 
+" Enter for auto-select
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+"                             \: \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\"
+" (Except without the backslash before the quotes, obviously
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
