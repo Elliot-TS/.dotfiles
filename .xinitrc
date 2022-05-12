@@ -8,6 +8,7 @@ userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
+test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
 
 DEFAULT_SESSION=xmonad
 
@@ -82,5 +83,4 @@ nitrogen --restore &
 
 # TODO: Power Management
 
-test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
 exec xmonad
