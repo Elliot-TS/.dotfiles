@@ -1,16 +1,33 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{systeme}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage[dvipsnames]{xcolor}
 \usepackage[shortlabels]{enumitem}
 \usepackage[explicit]{titlesec}
 \usepackage[margin=1in]{geometry}
+\setlength{\parskip}{1\baselineskip}
+\setlength{\parindent}{0}
 
 % Macros
 \newcommand*\pmat[1]{\begin{pmatrix}#1\end{pmatrix}}
 \newcommand*\tof[2]{\text{#1} \left(#2\right)}
 \newcommand*\reals{\mathbb{R}}
 \newcommand*\of[1]{\left(#1\right)}
+\newcommand*\syse[1]{\begin{equation*}\systeme{#1}\end{equation*}}
+\newcommand*\intros[2]{\left( #1_1, #1_2, \ldots, #1_#2 \right)}
+
+\newcommand*\ca[1]{{\color{Magenta}#1}}
+\newcommand*\cb[1]{{\color{Emerald}#1}}
+\newcommand*\cc[1]{{\color{Orange}#1}}
+\newcommand*\cd[1]{{\color{NavyBlue}#1}}
+\newcommand*\ce[1]{{\color{Maroon}#1}}
+\newcommand*\cf[1]{{\color{OliveGreen}#1}}
+\newcommand*\cg[1]{{\color{Fuchsia}#1}}
+\newcommand*\ch[1]{{\color{Blue}#1}}
+\newcommand*\ci[1]{{\color{Periwinkle}#1}}
+\newcommand*\cj[1]{{\color{Thistle}#1}}
 
 % Format the sections to be "Problem #" (for MAT-215)
 \titleformat{\section}{\normalfont\Large\bfseries}{}{0em}{#1\ Problem \thesection}
@@ -18,6 +35,5 @@
 % Document
 \begin{document}
 Elliot Swaim | Problem Set | \today
-
 
 \end{document}

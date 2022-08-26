@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =9
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/etc/profile.d'
+let g:netrw_dirhist_0='/home/elliots/.dotfiles/firefox/policies'
 let g:netrw_dirhist_9='/home/elliots/.vim'
 let g:netrw_dirhist_8='/usr/share/festival/voices'
 let g:netrw_dirhist_7='/home/elliots/.config/xmonad'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_5='/home/elliots'
 let g:netrw_dirhist_4='/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)'
 let g:netrw_dirhist_3='/home/elliots/Documents/Elliot Swaim/Education'
 let g:netrw_dirhist_2='/home/elliots/Documents/Elliot Swaim'
-let g:netrw_dirhist_1='/home/elliots/Documents'
-let g:netrw_dirhist_0='/home/elliots'

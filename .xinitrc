@@ -81,6 +81,9 @@ xscreensaver -no-splash &
 # Background Picture
 nitrogen --restore &
 
+# Make Snaps work
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+
 # TODO: Power Management
 
 exec xmonad

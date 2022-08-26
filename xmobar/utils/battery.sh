@@ -2,6 +2,8 @@
 
 # Settings
 critical_percentage=10
+warning_percentage=20
+warning_color="#e5c07b"
 
 # Get battery data
 upwr=$(upower -e | grep 'BAT')
@@ -53,10 +55,17 @@ then
     fi
 elif [[ $state == "discharging" ]]
 then
+    # Warning Level (but not critical level)
+    if [[ ${percentage%?} -le $warning_percentage ]]
+    then
+        battery_icon_str+="<fc=$warning_color>"
+    fi
+
+    # Set the symbol
     if [[ ${percentage%?} -le $critical_percentage ]]
     then
         battery_icon_str+="<fc=red>\uf582</fc>"
-    elif [[ ${percentage%?} -lt 20 ]]
+    elif [[ ${percentage%?} -lt 30 ]]
     then
         battery_icon_str+="\uf579"
     elif [[ ${percentage%?} -lt 30 ]]
@@ -86,9 +95,17 @@ then
     else
         battery_icon_str+="\uf578"
     fi
+
+    # Warning Level (but not critical level)
+    if [[ ${percentage%?} -le $warning_percentage ]]
+    then
+        battery_icon_str+="</fc>"
+    fi
 else
     battery_icon_str+="error: state = $state"
 fi
+
+
 battery_icon_str+="</fn>"
 
 # Display String

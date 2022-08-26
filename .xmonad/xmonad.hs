@@ -13,6 +13,7 @@
 import XMonad
 
 import XMonad.Actions.Minimize
+import XMonad.Actions.CycleWS
 
 import XMonad.Hooks.EwmhDesktops -- Makes Xmonad EWMH compliant rather than only ICCCM... whatever that means
 import XMonad.Hooks.DynamicLog
@@ -86,6 +87,8 @@ myStartupHook = do
     spawnOnce "bluethoothctl power on"
     spawnOnce "accountable2you"
     spawnOnce "picom -b"
+    spawnOnce "touchegg"
+    spawnOnce "/home/elliots/.dotfiles/firefox/lock_file/lock_file.sh"
 
 ------------------------------------------------------------------------------------------
 -- Manage Hooks
@@ -95,6 +98,16 @@ myStartupHook = do
 myManageHook = composeAll
     [
           className =? "ksysguard"  --> doFloat
+        , className =? "Gimp"       --> doFloat
+        , className =? "Logos Bible Software"      --> doFloat
+        , title     =? "Logos Bible Software"      --> doFloat
+        , appName   =? "Logos Bible Software"      --> doFloat
+        , className =? "logos.exe"      --> doFloat
+        , title     =? "logos.exe"      --> doFloat
+        , appName   =? "logos.exe"      --> doFloat
+        , className =? "wine"      --> doFloat
+        , title     =? "wine"      --> doFloat
+        , appName   =? "wine"      --> doFloat
         , isDialog                  --> doF W.swapUp
         , insertPosition Below Newer
     ]
@@ -134,13 +147,14 @@ myConfig = def
         -- Programs
         ----------------------------------------------------------------
           ("M-S-z"  ,               spawn "xscreensaver-command -lock"  )
-        , ("<Print>",               unGrab *> spawn "scrot -s"          )
-        , ("M-f"    ,               spawn "firefox"                     )
+        , ("<Print>",               spawn "scrot -s"          )
+        , ("M-f"    ,               spawn "vivaldi-stable"                     )
         , ("M-d"    ,               spawn "dolphin /home/elliots/Documents/Elliot\\ Swaim/")
         , ("M-v"    ,               spawn "virtualbox &"                )
         , ("M-x"    ,               spawn "termite -e 'vim /home/elliots/.dotfiles/.xmonad/xmonad.hs'")
         , ("M-a"    ,               spawn "net.ankiweb.Anki"            )
         , ("M-o"    ,               spawn "onboard"                     )
+        , ("M-r"    ,               spawn "krunner --replace"           )
         
         ----------------------------------------------------------------
         -- Layout Modification
@@ -174,6 +188,9 @@ myConfig = def
 
         -- Airplane Mode
         , ("M-S-a",         spawn "$HOME/.dotfiles/xmobar/utils/airplane/toggle_airplane_mode.sh")
+
+        -- Rotate Device
+       , ("M-S-r",          spawn "$HOME/.dotfiles/.xmonad/utils/auto_rotate/auto_rotate.sh")
     ] 
     where
         mykeys (XConfig {modMask = modm}) = M.fromList $
@@ -181,13 +198,12 @@ myConfig = def
                 -----------------------------------------------------------------
                 -- Programs
                 -----------------------------------------------------------------
-                 ((modm, xK_space), spawn "krunner --replace")
                 
                 ----------------------------------------------------------------
                 -- Scripts
                 ----------------------------------------------------------------
 
-                , ((modm, xK_s), spawn "konsole -e '/home/elliots/Documents/Elliot Swaim/Programming and Graphics/Python/2021/Google Cloud WaveNet TTS/speak-selected.sh'") 
+                ((modm, xK_s), spawn "termite -e '/home/elliots/Documents/Elliot\\ Swaim/Programming\\ and\\ Graphics/Python/2021/Google\\ Cloud\\ WaveNet\\ TTS/speak-selected.sh'") 
 
                 -----------------------------------------------------------------
                 -- Layouts
@@ -197,6 +213,12 @@ myConfig = def
                 , ((modm, xK_m), withFocused minimizeWindow)
                 , ((modm .|. mod1Mask, xK_m), withLastMinimized maximizeWindowAndFocus)
                 , ((modm .|. controlMask .|. mod1Mask, xK_m), withMinimized restoreAll) 
+
+                -- Cycle Workspaces
+                , ((modm, xK_Right), nextWS)
+                , ((modm, xK_Left), prevWS)
+                , ((modm .|. shiftMask, xK_Right), shiftToNext >> nextWS)
+                , ((modm .|. shiftMask, xK_Left), shiftToPrev >> prevWS)
              ]
         restoreAll = mapM_ maximizeWindow
         restoreAllMinimized = minimizedWindows >>= restoreAll

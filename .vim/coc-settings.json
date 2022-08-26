@@ -1,4 +1,5 @@
 {
+    "signature.target" : "echo",
     "languageserver" : {
         "ccls": {
             "command": "ccls",

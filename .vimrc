@@ -1,7 +1,5 @@
 " Vim Cheet Sheet https://vim.rtorr.com/
-" Syntax highlighting
 syntax on
-
 set linebreak
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -96,7 +94,7 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " Autocompile latex on save
-autocm BufWritePost *.tex silent !pdflatex --interaction=batchmode "%" 2>&1 > /dev/null
+autocm BufWritePost *.tex silent !xelatex --interaction=batchmode "%" 2>&1 > /dev/null
 nnoremap <leader>t :silent !zathura "%:t:r".pdf & disown<CR>:redraw!<CR>
 
 " Snippets
@@ -178,8 +176,8 @@ endif
 
 " Make <TAB> auto-select the first completion item 
 " Enter for auto-select
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-"                             \: \"\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>\"
+"inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              "\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (Except without the backslash before the quotes, obviously
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
 

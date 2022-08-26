@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Add Directories to PATH
-export PATH="/home/elliots/Documents/Elliot Swaim/Programming and Graphics/Batch & Bash/Youtube Music/:/home/elliots/npm/bin:/home/elliots/.emacs.d/bin:/usr/bin:/home/elliots/.local/bin:$PATH"
+export PATH="/home/elliots/Documents/Elliot Swaim/Programming and Graphics/Batch & Bash/Youtube Music/:/home/elliots/npm/bin:/home/elliots/.emacs.d/bin:/usr/bin:/home/elliots/.local/bin:/var/lib/flatpak/exports/share:/home/elliots/Applications/Blender/blender-3.2.0-candidate+v32.34f94a02f370-linux.x86_64-release:$PATH"
 #source /usr/share/nvm/init-nvm.sh
 
 # Fix Locale
@@ -149,6 +149,16 @@ pxc() {
     bluetoothctl power on
     bluetoothctl connect 00:16:94:37:19:3C
 }
+mxkeys() {
+    sudo systemctl start bluetooth
+    bluetoothctl power on
+    bluetoothctl connect D0:D7:36:1B:40:8F
+    hardware_keyboard_id=xinput | grep "AT Translated Set 2 keyboard" | sed 's/.*id=\([[:digit:]]\+\).*/\1/'
+    xinput disable $hardware_keyboard_id
+}
 
 # URL Decode
 alias urldecode='sed "s@+@ @g;s@%@\\\\x@g" | xargs -0 printf "%b"'
+
+# For snaps to work
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
