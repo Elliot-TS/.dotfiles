@@ -137,4 +137,6 @@ do
     then
         echo "Incorrect Password"
     fi
+
+    sleep 2
 done

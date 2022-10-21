@@ -1,5 +1,6 @@
 " Vim Cheet Sheet https://vim.rtorr.com/
 syntax on
+set timeoutlen=200
 set linebreak
 set noerrorbells
 set tabstop=4 softtabstop=4
@@ -64,8 +65,7 @@ nnoremap <leader>g :!/home/elliots/.dotfiles/.vim/utils/latex/Gauss_Elim<CR>
 nnoremap <leader>co bvec\c{}<esc>Pl%i
 vnoremap <leader>co c\c{}<esc>Pl%i
 
-
-" Plugins
+" PShift lugins
 call plug#begin('$HOME/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
@@ -78,14 +78,29 @@ Plug 'honza/vim-snippets'
 Plug 'sainnhe/everforest' 
 Plug 'joshdick/onedark.vim'
 Plug 'vim-scripts/CSApprox'
-Plug 'fuadnafiz98/transparent.vim'
+"Plug 'fuadnafiz98/transparent.vim'
 Plug 'romgrk/doom-one.vim'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'beyondmarc/glsl.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
+Plug 'hardselius/warlock'
+Plug 'pgdouyon/vim-yin-yang'
+Plug 'puremourning/vimspector'
+Plug 'Townk/vim-autoclose'
+Plug 'rustushki/JavaImp.vim'
 
 call plug#end()
+
+"JavaImp
+let g:JavaImpPaths = "/home/elliots/Documents/Elliot Swaim/Education/2022-2023 (Sophomore)/CSC-207/Assignments/AccessibilityTestAnalysis,/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)/Summer MAP/WSU_KSuite_1.1.2/WSU_KSuite_1.1.2/classes"
+let g:JavaImpTopImports = [
+	\ 'java\..*',
+	\ 'javax\..*',
+	\ 'org\..*',
+	\ 'com\..*'
+	\ ]
+
 " VimTex
 syntax enable
 let g:tex_flavor='latex'
@@ -118,6 +133,9 @@ colorscheme onehalfdark
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 set t_Co=256
+
+" Javalmp
+
 
 " YouCompleteMe
 "let g:ycm_filetype_whitelist = {"tex":1}
@@ -291,3 +309,44 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 "nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+
+" Vimspector
+" Visual Studio Mappings:
+" - F5: <Plug>VimspectorContinue
+" - Shift F5: <Plug>VimspectorStop
+" - Ctrl Shift F5: <Plug>VimspectorRestart
+" - F6: <Plug>VimspectortPause
+" - F8: <Plug>VimspectorJumpToNextBreakpoint
+" - Shift F8: <Plug>VimspectorJumpToPreviousBreakpoint
+" - F9: <Plug>VimspectorStepOver
+" - F11: <Plug>VimspectorStepInto
+" - Shift F11: <Plug>VimspectorStepOut
+"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" Human Mode Mappings:
+" - F5: <Plug>VimspectorContinue
+" - F3: <Plug>VimspectorStop
+" - F4: <Plug>VimspectorRestart
+" - F6: <Plug>VimspectorPause
+" - F9: <Plug>VimspectorJumpToNextBreakpoint
+" - <leader>F9: <Plug>VimspectorJumpToPreviousBreakpoint
+" - F8: <Plug>VimspectorAddFunctionBreakpoint
+" - <leader>F8: <Plug>VimspectorRunToCursor
+" - F10: <Plug>VimspectorStepOver
+" - F11: <Plug>VimspectorStepInto
+" - F12: <Plug>VimspectorStepOut
+let g:vimspector_enable_mappings = 'HUMAN'
+
+nmap <Leader>di <Plug>VimspectorBalloonEval
+xmap <Leader>di <Plug>VimspectorBalloonEval
+
+" Moving up/down the stack
+nmap <LocalLeader><F11> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12> <Plug>VimspectorDownFrame
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+

@@ -8,7 +8,15 @@ userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
-test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
+
+# Keyboard Layout
+internal_keyboard=$(xinput | grep "AT Translated Set 2 keyboard" | sed 's/.*id=\([[:digit:]]\+\).*/\1/')
+external_keyboard=$(xinput | grep "MX Keys Mini Keyboard" | sed 's/.*id=\([[:digit:]]\+\).*/\1/' | sed -n '2p')
+test -f ~/.dotfiles/keyboard_layouts/Programming_Colemak_broken_n.xkb && xkbcomp -i $internal_keyboard ~/.dotfiles/keyboard_layouts/Programming_Colemak_broken_n.xkb $DISPLAY
+if [[ $external_keyboard != "" && -f ~/.dotfiles/keyboard_layouts/Programming_Colemak.xkb ]]
+then
+    xkbcomp -i $external_keyboard ~/.dotfiles/keyboard_layouts/Programming_Colemak.xkb $DISPLAY
+fi
 
 DEFAULT_SESSION=xmonad
 
@@ -84,6 +92,15 @@ nitrogen --restore &
 # Make Snaps work
 export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
 
-# TODO: Power Management
+# gcalcli reminders
+[[ -x /usr/bin/dunst ]] && /usr/bin/dunst -config ~/.dunstrc &
+
+if [ -x /usr/bin/gcalcli ]; then
+    while true; do
+        /usr/bin/gcalcli --calendar="Flexible" remind 0
+        /usr/bin/gcalcli --calendar="Elliot Swaim" remind 10
+        sleep 300
+    done &
+fi
 
 exec xmonad

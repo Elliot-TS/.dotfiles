@@ -1,12 +1,7 @@
 // Changes:
-// Key Codes:
-//  - made tilde (49) press q (<AD01>)
-//  - made q (24) press n (<AB06>)
-//  - made n (57) press tilde (<TLDE>)
 // xkb_symbols:
 //  - Added 'capslock(baskspace)'
 // Layout:
-//  - Added an extra group for symbols
 //  - Mapped capslock to backspace
 //  - Mapped backspace to capslock (temporarily dissabled to ease learning period)
 // Other:
@@ -30,7 +25,7 @@ xkb_keycodes "evdev+aliases(qwerty)" {
     <AE12> = 21;
     <BKSP> = 22;
      <TAB> = 23;
-    <AD01> = 49; // CHANGED: Original keycode = 24 (q); 49 = Tilde key (tilde key presses q)
+    <AD01> = 24;
     <AD02> = 25;
     <AD03> = 26;
     <AD04> = 27;
@@ -55,7 +50,7 @@ xkb_keycodes "evdev+aliases(qwerty)" {
     <AC09> = 46;
     <AC10> = 47;
     <AC11> = 48;
-    <TLDE> = 57; // CHANGED: Original keycode = 49 (tilde); 57 = n (n key presses tilde)
+    <TLDE> = 49;
     <LFSH> = 50;
     <BKSL> = 51;
     <AB01> = 52;
@@ -63,7 +58,7 @@ xkb_keycodes "evdev+aliases(qwerty)" {
     <AB03> = 54;
     <AB04> = 55;
     <AB05> = 56;
-    <AB06> = 24; // CHANGED: Original keycode = 57 (n); 24 = q (q key presses n)
+    <AB06> = 57;
     <AB07> = 58;
     <AB08> = 59;
     <AB09> = 60;

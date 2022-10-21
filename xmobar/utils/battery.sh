@@ -59,12 +59,14 @@ then
     if [[ ${percentage%?} -le $warning_percentage ]]
     then
         battery_icon_str+="<fc=$warning_color>"
+        notify-send "Battery Level Low.  Please Plug In."
     fi
 
     # Set the symbol
     if [[ ${percentage%?} -le $critical_percentage ]]
     then
         battery_icon_str+="<fc=red>\uf582</fc>"
+        notify-send "Battery Level Low.  Plug In Immediately"
     elif [[ ${percentage%?} -lt 30 ]]
     then
         battery_icon_str+="\uf579"
