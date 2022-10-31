@@ -35,10 +35,10 @@ let mapleader=" "
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 inoremap jj <esc>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <A-LEFT> :wincmd h<CR>
+nnoremap <A-DOWN> :wincmd j<CR>
+nnoremap <A-UP> :wincmd k<CR>
+nnoremap <A-RIGHT> :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 25<CR>
 nnoremap <silent> <leader>+ :vertical resize +5<CR>
