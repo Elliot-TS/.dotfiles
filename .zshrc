@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Add Directories to PATH
-export PATH="/home/elliots/Documents/Elliot Swaim/Programming and Graphics/Batch & Bash/Youtube Music/:/home/elliots/npm/bin:/home/elliots/.emacs.d/bin:/usr/bin:/home/elliots/.local/bin:/var/lib/flatpak/exports/share:$PATH"
+export PATH="/home/elliots/Documents/Elliot Swaim/Programming and Graphics/Batch & Bash/Youtube Music/:/home/elliots/npm/bin:/home/elliots/.emacs.d/bin:/usr/bin:/home/elliots/.local/bin:/var/lib/flatpak/exports/share:/home/elliots//LogosBible_Linux_P/:$PATH"
 #source /usr/share/nvm/init-nvm.sh
 
 # Fix Locale

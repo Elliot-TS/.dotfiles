@@ -31,6 +31,7 @@ import XMonad.Layout.Renamed as Rn
 import XMonad.Layout.Spacing
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.ResizableTile
 
 import XMonad.ManageHook
 
@@ -60,9 +61,10 @@ myLayout =    Rn.renamed [Rn.CutWordsLeft 1]
             $ minimize
             $ tiled ||| Mirror tiled ||| Full ||| three ||| threeMid 
     where 
-        tiled   =   Rn.renamed [Rn.Replace "Tiled"]
-                    $ magnifierOff 
-                    $ Tall nmaster delta ratio 
+        --tiled   =   Rn.renamed [Rn.Replace "Tiled"]
+                    -- $ magnifierOff 
+                    -- $ Tall nmaster delta ratio 
+        tiled   =   ResizableTall 1 (3/100) (1/2) []
         three   =   Rn.renamed [Rn.Replace "Three"]
                     $ magnifierOff 
                     $ ThreeCol nmaster delta ratio 
@@ -97,18 +99,10 @@ myStartupHook = do
 
 myManageHook = composeAll
     [
-          className =? "ksysguard"  --> doFloat
-        , className =? "Gimp"       --> doFloat
-        , className =? "Logos Bible Software"      --> doFloat
-        , title     =? "Logos Bible Software"      --> doFloat
-        , appName   =? "Logos Bible Software"      --> doFloat
-        , className =? "logos.exe"      --> doFloat
-        , title     =? "logos.exe"      --> doFloat
-        , appName   =? "logos.exe"      --> doFloat
-        , className =? "wine"      --> doFloat
-        , title     =? "wine"      --> doFloat
-        , appName   =? "wine"      --> doFloat
-        , isDialog                  --> doF W.swapUp
+          className =? "ksysguard"      --> doFloat
+        , className =? "Gimp"           --> doFloat
+        , title     =? "Drawing Panel"  --> doFloat
+        , isDialog                      --> doF W.swapUp
         , insertPosition Below Newer
     ]
 
@@ -152,9 +146,12 @@ myConfig = def
         , ("M-d"    ,               spawn "dolphin /home/elliots/Documents/Elliot\\ Swaim/")
         , ("M-v"    ,               spawn "virtualbox &"                )
         , ("M-x"    ,               spawn "termite -e 'vim /home/elliots/.dotfiles/.xmonad/xmonad.hs'")
-        , ("M-a"    ,               spawn "net.ankiweb.Anki"            )
         , ("M-o"    ,               spawn "onboard"                     )
         , ("M-r"    ,               spawn "krunner --replace"           )
+
+        ----------------------------------------------------------------
+        -- Scripts
+        ----------------------------------------------------------------
         
         ----------------------------------------------------------------
         -- Layout Modification
@@ -171,12 +168,23 @@ myConfig = def
         , ("M-S-l",         sendMessage Mag.MagnifyLess )
 
         -- Boring Window
-        , ("M-j",           Bw.focusUp                      )
-        , ("M-k",           Bw.focusDown                    )
+        , ("M-k",           Bw.focusUp                      )
+        , ("M-j",           Bw.focusDown                    )
+
+        -- Resizable Tile
+        , ("M-S-j",         sendMessage MirrorShrink        )
+        , ("M-S-k",         sendMessage MirrorExpand        )
 
         -----------------------------------------------------------------
         -- System
         -----------------------------------------------------------------
+        , ("M-a", spawn "termite -e \"/home/elliots/Documents/Elliot\\ Swaim/Programming\\ and\\ Graphics/Python/2021/Google\\ Cloud\\ WaveNet\\ TTS/speak-selected.sh\"")
+        , ("M-s", spawn "/home/elliots/Documents/Elliot\\ Swaim/Education/2022-2023\\ \\(Sophomore\\)/CSC-207/Assignments/Speed\\ Reader/SpeedReadSelected.sh")
+
+
+        --, ("M-a", spawn "$HOME/Documents/Elliot Swaim/Programming and Graphics/Python/2021/Google Cloud WaveNet TTS/speak-selected.sh")
+        --, ("M-s", spawn "vivaldi-stable")
+
         
         -- Volume
         , ("<XF86AudioRaiseVolume>",    spawn "amixer set Master unmute; amixer set Master 5%+")
@@ -198,19 +206,13 @@ myConfig = def
                 -----------------------------------------------------------------
                 -- Programs
                 -----------------------------------------------------------------
-                
-                ----------------------------------------------------------------
-                -- Scripts
-                ----------------------------------------------------------------
-
-                ((modm, xK_s), spawn "termite -e '/home/elliots/Documents/Elliot\\ Swaim/Programming\\ and\\ Graphics/Python/2021/Google\\ Cloud\\ WaveNet\\ TTS/speak-selected.sh'") 
 
                 -----------------------------------------------------------------
                 -- Layouts
                 -----------------------------------------------------------------
                 
                 -- Minimizing Windows
-                , ((modm, xK_m), withFocused minimizeWindow)
+                ((modm, xK_m), withFocused minimizeWindow)
                 , ((modm .|. mod1Mask, xK_m), withLastMinimized maximizeWindowAndFocus)
                 , ((modm .|. controlMask .|. mod1Mask, xK_m), withMinimized restoreAll) 
 

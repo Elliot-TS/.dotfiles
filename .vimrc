@@ -129,7 +129,7 @@ if has("autocmd")
 endif
 
 " Theming
-colorscheme onehalfdark 
+colorscheme everforest 
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE
 set background=dark
 set t_Co=256
