@@ -67,7 +67,7 @@ get_session(){
         xfce) dbus_args+=(xfce4-session) ;;
         openbox) dbus_args+=(openbox-session) ;;
         xmonad) dbus_args+=(xmonad) ;;
-        *) dbus_args+=($DEFAULT_SESSION) ;;
+        *) dbus_args+=($DEFAULT_SESSION);;
     esac
 
     echo "dbus-launch ${dbus_args[*]}"

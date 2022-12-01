@@ -1,0 +1,1 @@
+You changed the picom compositor backend from xrender to glx to try to get rid of screen glitch.  If you need to change it back, see https://wiki.archlinux.org/title/Picom#Screen_artifacts/screenshot_issues_when_using_AMD's_Catalyst_driver

@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/elliots/.config'
 let g:netrw_dirhist_2='/home/elliots/Documents/Elliot Swaim/Education/2022-2023 (Sophomore)/MAP/Notes'
 let g:netrw_dirhist_1='/etc/profile.d'
 let g:netrw_dirhist_0='/home/elliots/.dotfiles/firefox/policies'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_7='/home/elliots/.config/xmonad'
 let g:netrw_dirhist_6='/home/elliots/.config/xmonad/xmonad'
 let g:netrw_dirhist_5='/home/elliots'
 let g:netrw_dirhist_4='/home/elliots/Documents/Elliot Swaim/Education/2021-2022 (Freshman)'
-let g:netrw_dirhist_3='/home/elliots/Documents/Elliot Swaim/Education'
